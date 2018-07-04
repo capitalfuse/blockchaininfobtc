@@ -29,11 +29,7 @@
 <tr><td>{l s='Cart Value' mod='blockchaininfobtc'}</td> <td> : {math equation='x/y' x=$bits y=100000000} BTC</td></tr>
 {if $txid != ''}
 <tr><td>{l s='Amount Paid' mod='blockchaininfobtc'}</td> <td> : {math equation='x/y' x=$bits_payed y=100000000} BTC</td></tr>
-<<<<<<< HEAD
 <tr><td>{l s='Transaction Link' mod='blockchaininfobtc'}</td> <td> : <a href="{$base_url}/btc/tx/{$txid}"> {$txid} <a></td></tr>
-=======
-<tr><td>{l s='Transaction Link' mod='blockchaininfobtc'}</td> <td> : <a href="{$base_url}/api/tx?txid={$txid}&addr={$addr}"> {$txid} <a></td></tr>
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
 {if $bits != $bits_payed}
 <tr><td>{l s='Payment Error' mod='blockchaininfobtc'}</td><td style='color:red'> : {l s='Amount paid not matching cart value' mod='blockchaininfobtc'}</td></tr>
 {/if}

@@ -38,9 +38,5 @@
   {l s='If you think this is an error, feel free to contact our [1]expert customer support team[/1].' mod='blockchaininfobtc' sprintf=['[1]' => "<a href='{$contact_url}'>", '[/1]' => '</a>']}
 </p>
 {/if}
-<<<<<<< HEAD
 <h3><a target="_blank" href='{$base_url}' title="{l s='Blockchain' mod='blockchaininfobtc'}"></a></h3>
-=======
-<h3><a target="_blank" href='{$base_url}' title="{l s='Blockchain Info' mod='blockchaininfobtc'}"></a></h3>
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
 <hr />

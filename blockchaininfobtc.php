@@ -47,11 +47,7 @@ class Blockchaininfobtc extends PaymentModule
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module?');
 
         //Include configuration from the local file.
-<<<<<<< HEAD
         $BLOCKCHAININFOBTC_BASE_URL = 'https://www.blockchain.com';
-=======
-        $BLOCKCHAININFOBTC_BASE_URL = 'https://api.blockchain.info';
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
         $BLOCKCHAININFOBTC_WEBSOCKET_URL = 'wss://ws.blockchain.info/inv';
         $BLOCKCHAININFOBTC_NEW_ADDRESS_URL = 'https://api.blockchain.info/v2/receive';
         $BLOCKCHAININFOBTC_PRICE_URL = 'https://blockchain.info/tobtc?currency=';
@@ -91,11 +87,7 @@ class Blockchaininfobtc extends PaymentModule
         || !$this->registerHook('paymentOptions')
         || !$this->registerHook('paymentReturn')
         || !$this->registerHook('displayInvoice')
-<<<<<<< HEAD
         || !$this->registerHook('displayOrderDetail')
-=======
-        || !$this->registerHook('displayPDFInvoice')
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
         ) {
             return false;
         }
@@ -427,11 +419,7 @@ class Blockchaininfobtc extends PaymentModule
     }
 
     /**
-<<<<<<< HEAD
     * This hook is used to display the order confirmation page. $params['order']->id (primary key = id_order).
-=======
-    * This hook is used to display the order confirmation page.
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
     */
     public function hookPaymentReturn($params)
     {
@@ -443,11 +431,7 @@ class Blockchaininfobtc extends PaymentModule
             $this->smarty->assign('status', 'ok');
         }
 
-<<<<<<< HEAD
         $b_order = Db::getInstance()->ExecuteS('SELECT * FROM ' . _DB_PREFIX_ . 'blockchaininfobtc WHERE `id_order` = ' . (int)$params['order']->id. '  LIMIT 1');
-=======
-        $b_order = Db::getInstance()->ExecuteS('SELECT * FROM ' . _DB_PREFIX_ . 'blockchaininfobtc WHERE `id_order` = ' . (int)$params['order']. '  LIMIT 1');
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
 
         if ($b_order) {
             $tx_status = (int)($b_order[0]['status']);
@@ -479,26 +463,14 @@ class Blockchaininfobtc extends PaymentModule
 
     public function hookDisplayInvoice($params)
     {
-<<<<<<< HEAD
         $b_order = Db::getInstance()->ExecuteS('SELECT * FROM ' . _DB_PREFIX_ . 'blockchaininfobtc WHERE `id_order` = ' .(int)$params['id_order']. '  LIMIT 1');
-=======
-        $b_order = Db::getInstance()->ExecuteS('SELECT * FROM ' . _DB_PREFIX_ . 'blockchaininfobtc WHERE `id_order` = ' . (int)$params['order']. '  LIMIT 1');
-
-        /*
-        print_r($b_order);
-        */
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
 
         if ($b_order) {
             $tx_status = (int)($b_order[0]['status']);
 
             if ($tx_status == -1) {
                 $status = 'Payment Not Received.';
-<<<<<<< HEAD
             } elseif ($tx_status >= 0 && $tx_status <= 3) {
-=======
-            } elseif ($tx_status == 0) {
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
                 $status = 'Waiting for 3 Confirmations.';
             } else {
                 $status = 'Payment Confirmed.';
@@ -517,44 +489,23 @@ class Blockchaininfobtc extends PaymentModule
         }
     }
 
-<<<<<<< HEAD
     //Add Order detail info to customer page. $params['order']->id (primary key = id_order).
     public function hookDisplayOrderDetail($params)
     {
         $b_order = Db::getInstance()->ExecuteS('SELECT * FROM ' . _DB_PREFIX_ . 'blockchaininfobtc WHERE `id_order` = ' .(int)$params['order']->id. '  LIMIT 1');
-=======
-    //Add Bitcoin invoice to pdf invoice
-    public function hookDisplayPDFInvoice($params)
-    {
-        if (!$this->active) {
-            return;
-        }
-
-        $b_order = Db::getInstance()->ExecuteS('SELECT * FROM ' . _DB_PREFIX_ . 'blockchaininfobtc WHERE `id_order` = ' .(int)$params['order']. '  LIMIT 1');
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
 
         if ($b_order) {
             $this->context->smarty->assign(
                 array(
-<<<<<<< HEAD
                     'addr' => $b_order[0]['addr'],
                     'txid' => $b_order[0]['txid'],
                     'bits' => $b_order[0]['bits'],
-=======
-                    'status' => (int)($b_order[0]['status']),
-                    'addr' => $b_order[0]['addr'],
-                    'txid' => $b_order[0]['txid'],
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
                     'base_url' => Configuration::get('BLOCKCHAININFOBTC_BASE_URL'),
                     'bits_payed' => $b_order[0]['bits_payed']
                 )
             );
 
-<<<<<<< HEAD
             return $this->display(__FILE__, 'views/templates/hook/order_details.tpl');
-=======
-            return $this->display(__FILE__, 'views/templates/hook/invoice_pdf.tpl');
->>>>>>> 1609f11b694dcacb8508a9d3843b19cd9f657b95
         }
     }
 }
